@@ -253,28 +253,28 @@ getFolderList(){
             <Sidebar getFolderList = {this.getFolderList.bind(this)}/>
         </div>
       </Col>
-      <Col className="file-container" xs lg="7">
+      <Col className="file-container" xs lg="8">
         <div className="files-wrapper">
           <div className="files">
-              <Row className='btn-wrapper'>
+              <div className='btn-wrapper'>
                   <ImageContainer
                   retrievingContent={this.retrievingContent.bind(this)}
                   snapshot={this.state.snapshot}
                   checkedFolder={this.state.checked}
                   deleteFiles ={this.deleteFiles.bind(this)}/>
-              </Row>
+              </div>
               <Row className='list-wrapper'>
-              <ListFiles
-                files={this.state.files}
-                folders={this.state.folders}
-                handleJustClose={this.handleJustClose.bind(this)}
-                handleShow = {this.handleShow.bind(this)}
-                show = {this.state.show}
-                currentSrc = {this.state.currentSrc}
-                handleClose = {this.handleClose.bind(this)}
-                onCheck={this.onCheck.bind(this)}
-                deleteItems={this.state.deleteItems}
-                />
+                <ListFiles
+                  files={this.state.files}
+                  folders={this.state.folders}
+                  handleJustClose={this.handleJustClose.bind(this)}
+                  handleShow = {this.handleShow.bind(this)}
+                  show = {this.state.show}
+                  currentSrc = {this.state.currentSrc}
+                  handleClose = {this.handleClose.bind(this)}
+                  onCheck={this.onCheck.bind(this)}
+                  deleteItems={this.state.deleteItems}
+                  />
 
               </Row>
           </div>

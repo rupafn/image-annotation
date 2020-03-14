@@ -83,22 +83,19 @@ displayList(){
   let files = this.props.files
 
   const listItems = Object.keys(files).map((key,i) =>
-      <ListGroup.Item key={key}>
+
       <Card style={{ width: '18rem' }}>
-         <Form.Group controlId="formBasicCheckbox">
+         <Form.Group className='check-form' controlId="formBasicCheckbox">
            <Form.Check type="checkbox" label="" key={key} onChange={this.onCheck.bind(this,key)}/>
          </Form.Group>
         <Card.Img className='img-thumb' variant="top" src={files[key].src} onClick={this.handleShow.bind(this,files[key].src)}/>
         <Card.Body>
           <Card.Title>{files[key].name}</Card.Title>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the bulk of
-            the card's content.
-          </Card.Text>
+
           <Button className='btn-color' variant="primary">Go somewhere</Button>
         </Card.Body>
         </Card>
-      </ListGroup.Item>
+
 
     );
     // console.log(listItems);
@@ -110,9 +107,7 @@ displayList(){
 
     return (
       <div className='list-group'>
-      <ListGroup>
           {Object.keys(this.props.files).length>0?this.displayList(): <p></p>}
-      </ListGroup>
       <ImageModal
         folders = {this.props.folders}
         handleJustClose={this.props.handleJustClose}
