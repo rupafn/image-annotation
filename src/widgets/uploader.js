@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row,Col,ListGroup} from 'react-bootstrap';
+import {Row,Col,ListGroup,Spinner} from 'react-bootstrap';
 import ImageContainer from './imageContainer';
 import ListFiles from './listFiles';
 import Sidebar from './Sidebar';
@@ -15,11 +15,13 @@ class Uploader extends React.Component{
         show:false,
         currentSrc:'',
         snapshot:'',
-        checked:'all'
+        checked:'all',
+        contentRetrieved:false
       }
   }
 
   componentDidMount(){
+
     this.readFromdb()
     this.getFolders()
   }
@@ -142,6 +144,9 @@ class Uploader extends React.Component{
   }
 
 getFromStorage(snapshot){
+  this.setState({
+    contentRetrieved:false
+  })
   let objs = snapshot
   let list = {}
   console.log('getting from storage');
@@ -201,32 +206,35 @@ getFromStorage(snapshot){
               // Unknown error occurred, inspect the server response
               console.log('Unknown error occurred, inspect the server response');
               break;
-        
+
 
           }
         });
       }
-
   }
-
 }
 
+retrievingContent(){
+  this.setState({
+    contentRetrieved:false
+  })
+}
 readFromdb(){
+
   var listFiles = firebase.database().ref('images/');
     listFiles.on('value',(snapshot)=>{
       console.log(snapshot.val());
       this.getFromStorage(snapshot.val());
         this.setState({
           snapshot:snapshot.val(),
-          deleteItems:[]
+          deleteItems:[],
+          contentRetrieved:true
         })/////
     })
 }
 
 getFolderList(){
   let folders = this.state.folders
-  console.log('folders');
-  console.log(folders);
   const listItems = folders.map((name,key) =>
         <ListGroup.Item key={key}>{name}</ListGroup.Item>
     );
@@ -238,9 +246,9 @@ getFolderList(){
 
   render() {
     return (
-      <Row className="wrapper" >
-
-      <Col  className ="menu"xs lg="3">
+    <div id ='uploader'>
+    <Row className="wrapper" >
+     <Col  className ="menu"xs lg="3">
         <div className="sidebar">
             <Sidebar getFolderList = {this.getFolderList.bind(this)}/>
         </div>
@@ -250,6 +258,7 @@ getFolderList(){
           <div className="files">
               <Row className='btn-wrapper'>
                   <ImageContainer
+                  retrievingContent={this.retrievingContent.bind(this)}
                   snapshot={this.state.snapshot}
                   checkedFolder={this.state.checked}
                   deleteFiles ={this.deleteFiles.bind(this)}/>
@@ -270,10 +279,18 @@ getFolderList(){
               </Row>
           </div>
         </div>
-
       </Col>
+    </Row>
+    {this.state.contentRetrieved? (<p></p>) : (
+      <div className = "spinner-wrapper">
+        <Spinner className='spinner' animation="border" />
+      </div>
+    )}
 
-      </Row>
+    </div>
+
+
+
     );
   }
 }

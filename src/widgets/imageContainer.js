@@ -16,6 +16,7 @@ class ImageContainer extends React.Component{
   }
 
   onChangeHandler(e) {
+     this.props.retrievingContent()
      const self = this
      let file = e.target.files[0]
      console.log(file);
@@ -53,7 +54,7 @@ class ImageContainer extends React.Component{
     obj[time] = ext
     newImageRef.putString(this.state.previewSrc, 'data_url').then((res) => {
       console.log(obj);
-    
+
       var database = firebase.database();
       database.ref('images/'+this.props.checkedFolder).set(obj);
 

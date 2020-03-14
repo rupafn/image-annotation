@@ -3,11 +3,30 @@ html, body {
   margin: 0;
 }
 
-#root,.container {
+#root,.container,#uploader {
   height: 100%;
 
 }
 
+.spinner-wrapper{
+  position: absolute;
+  background: #0a0a0aad;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  top:0;
+}
+
+.spinner{
+  border: 1.25em solid #00796B;
+  border-right-color: transparent;
+  animation: spinner-border 2s linear infinite;
+  height: 12em;
+  width: 12em;
+
+}
 .wrapper{
   height: 100%;
 }
@@ -21,7 +40,7 @@ html, body {
 
 .sidebar{
   height: 100%;
-  background-color:rgb(24,46,67);
+  background-color:#00796B;
   color:white;
   overflow-y: scroll;
 
@@ -74,8 +93,8 @@ html, body {
   width: 100%;
   border-radius: 0px;
   font-weight: bold;
-  background-color:rgb(24,46,67);
-  border-color: rgb(24,46,67);
+  background-color:#00796B;
+  border-color: #00796B;
 }
 
 .title:hover{

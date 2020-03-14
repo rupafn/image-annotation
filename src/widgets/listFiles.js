@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form,Row,Col,ListGroup,Image} from 'react-bootstrap';
+import {Form,Card,Button, Row,Col,ListGroup,Image} from 'react-bootstrap';
 import ImageModal from './ImageModal';
 const firebase = require('firebase')
 
@@ -63,27 +63,41 @@ handleClose(folder,base64) {
   this.props.handleClose(folder,base64)
 }
 
+// <Row>
+//     <Col xs={1} md={2}>
+//          <Form.Group controlId="formBasicCheckbox">
+//            <Form.Check type="checkbox" label="" key={key} onChange={this.onCheck.bind(this,key)}/>
+//          </Form.Group>
+//     </Col>
+//     <Col xs={6} md={4}>
+//     <div onClick={this.handleShow.bind(this,files[key].src)}>
+//         <Image src={files[key].src} thumbnail/>
+//     </div>
+//     </Col>
+//     <Col xs={4} md={2}>
+//         <p>{files[key].name}</p>
+//     </Col>
+// </Row>
+
 displayList(){
   let files = this.props.files
 
   const listItems = Object.keys(files).map((key,i) =>
       <ListGroup.Item key={key}>
-        <Row>
-            <Col xs={1} md={2}>
-                 <Form.Group controlId="formBasicCheckbox">
-                   <Form.Check type="checkbox" label="" key={key} onChange={this.onCheck.bind(this,key)}/>
-                 </Form.Group>
-            </Col>
-            <Col xs={6} md={4}>
-            <div onClick={this.handleShow.bind(this,files[key].src)}>
-                <Image src={files[key].src} thumbnail/>
-            </div>
-            </Col>
-            <Col xs={4} md={2}>
-                <p>{files[key].name}</p>
-            </Col>
-        </Row>
-
+      <Card style={{ width: '18rem' }}>
+         <Form.Group controlId="formBasicCheckbox">
+           <Form.Check type="checkbox" label="" key={key} onChange={this.onCheck.bind(this,key)}/>
+         </Form.Group>
+        <Card.Img variant="top" src={files[key].src} />
+        <Card.Body>
+          <Card.Title>{files[key].name}</Card.Title>
+          <Card.Text>
+            Some quick example text to build on the card title and make up the bulk of
+            the card's content.
+          </Card.Text>
+          <Button variant="primary">Go somewhere</Button>
+        </Card.Body>
+        </Card>
       </ListGroup.Item>
 
     );
