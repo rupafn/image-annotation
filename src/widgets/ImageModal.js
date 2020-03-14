@@ -76,6 +76,7 @@ class ImageModal extends React.Component{
         <Modal.Footer>
 
           <DropdownButton
+            id='btn-color'
             currentFolder={this.state.currentFolder}
             folders={this.props.folders}
             setCurrentFolder={this.setCurrentFolder.bind(this)}/>

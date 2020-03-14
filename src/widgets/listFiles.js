@@ -88,14 +88,14 @@ displayList(){
          <Form.Group controlId="formBasicCheckbox">
            <Form.Check type="checkbox" label="" key={key} onChange={this.onCheck.bind(this,key)}/>
          </Form.Group>
-        <Card.Img variant="top" src={files[key].src} />
+        <Card.Img className='img-thumb' variant="top" src={files[key].src} onClick={this.handleShow.bind(this,files[key].src)}/>
         <Card.Body>
           <Card.Title>{files[key].name}</Card.Title>
           <Card.Text>
             Some quick example text to build on the card title and make up the bulk of
             the card's content.
           </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
+          <Button className='btn-color' variant="primary">Go somewhere</Button>
         </Card.Body>
         </Card>
       </ListGroup.Item>

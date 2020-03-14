@@ -73,7 +73,7 @@ class ImageContainer extends React.Component{
           <Form className='form-uploader' >
           <Form.Group controlId="formForFileUpload" className='form-group-style'>
           <div className='uploader-wrapper'>
-            <Button variant="primary" className='btn-block' >
+            <Button variant="primary" className='btn-block btn-color' >
                 Upload File
             </Button>
             <Form.Control className='uploader-input' type="file" placeholder="Upload" onChange={this.onChangeHandler.bind(this)}/>

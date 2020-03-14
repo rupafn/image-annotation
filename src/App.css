@@ -175,3 +175,15 @@ html, body {
   float: right;
   cursor: pointer;
 }
+
+.btn-color{
+  background-color: #607D8B;
+}
+
+.btn-success{
+    background-color: #00796B;
+}
+
+.img-thumb{
+  cursor: pointer;
+}
